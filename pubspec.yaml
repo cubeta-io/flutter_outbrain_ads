@@ -24,14 +24,7 @@ dev_dependencies:
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
-flutter:
-  plugin:
-    platforms:
-      android:
-        package: com.cubeta.outbrainads
-        pluginClass: OutbrainAdPlugin
-      ios:
-        pluginClass: OutbrainAdPlugin
+
 
   # To add assets to your package, add an assets section, like this:
   # assets:
