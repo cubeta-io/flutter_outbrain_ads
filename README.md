@@ -14,7 +14,9 @@ To use this plugin, add `flutter_outbrain_ads` as a dependency in your pubspec.y
 
 ## Setup
 add this permission in your manifist file
-`<uses-permission android:name="com.google.android.gms.permission.AD_ID"/>`
+```dart
+<uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
+```
 
 ### Example
 
