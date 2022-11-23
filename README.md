@@ -1,7 +1,7 @@
 # Flutter Outbrain Ads
 
 A Flutter package to show outbrain ads for Android and iOS.
-
+Note: this plugin is unofficial.
 ## Platform Support
 
 | Android | iOS | 
