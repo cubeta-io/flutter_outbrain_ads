@@ -46,6 +46,9 @@ class _OutbrainAdState extends State<OutbrainAd> {
         webViewHeight = double.parse(result['height'].toString()) + 10;
       });
     }
+    if (result['url'] != null) {
+      _launchUrl(Uri.parse(result['url']));
+    }
   }
 
   _buildWidgetURL() async {
@@ -101,14 +104,14 @@ class _OutbrainAdState extends State<OutbrainAd> {
               javascriptMode: JavascriptMode.unrestricted,
               javascriptChannels: {
                 JavascriptChannel(
-                  name: 'OutbrainHeight',
+                  name: 'ReactNativeWebView',
                   onMessageReceived: _onWebViewMessage,
                 )
               },
               onWebViewCreated: (controller) => _controller = controller,
               onPageFinished: (url) {
                 _controller?.runJavascript(
-                    "var timesRun = 0;var interval = setInterval(function(){    timesRun += 1;    if(timesRun === 2){        clearInterval(interval);    }   let result = {} ;           let height = document.body.scrollHeight ;      result['height'] = height;          OutbrainHeight.postMessage(JSON.stringify(result)) ;  }, 1000);");
+                    "var timesRun = 0;var interval = setInterval(function(){    timesRun += 1;    if(timesRun === 2){        clearInterval(interval);    }   let result = {} ;           let height = document.body.scrollHeight ;      result['height'] = height;          ReactNativeWebView.postMessage(JSON.stringify(result)) ;  }, 1000);");
               },
               navigationDelegate: (nav) {
                 if (nav.url.contains('https://widgets.outbrain.com')) {
@@ -123,7 +126,7 @@ class _OutbrainAdState extends State<OutbrainAd> {
 }
 
 Future<void> _launchUrl(url) async {
-  if (!await launchUrl(url)) {
+  if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
     throw 'Could not launch $url';
   }
 }
