@@ -120,6 +120,7 @@ class _OutbrainAdState extends State<OutbrainAd> {
               initialMediaPlaybackPolicy: AutoMediaPlaybackPolicy.always_allow,
               zoomEnabled: false,
               javascriptMode: JavascriptMode.unrestricted,
+              backgroundColor: Colors.transparent,
               javascriptChannels: {
                 JavascriptChannel(
                   name: 'ReactNativeWebView',
