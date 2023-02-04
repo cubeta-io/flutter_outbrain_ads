@@ -14,20 +14,22 @@ const outbrainWidgetURL =
 const double webViewInitialHeight = 100;
 
 class OutbrainAd extends StatefulWidget {
-  const OutbrainAd(
-      {Key? key,
-      required this.permalink,
-      this.outbrainAndroidWidgetId,
-      this.outbrainIosWidgetId,
-      this.outbrainAndroidDataObInstallationKey,
-      this.outbrainIosDataObInstallationKey})
-      : super(key: key);
+  const OutbrainAd({
+    Key? key,
+    required this.permalink,
+    this.outbrainAndroidWidgetId,
+    this.outbrainIosWidgetId,
+    this.outbrainAndroidDataObInstallationKey,
+    this.outbrainIosDataObInstallationKey,
+    this.darkMode = false,
+  }) : super(key: key);
 
   final String permalink;
   final String? outbrainAndroidWidgetId;
   final String? outbrainIosWidgetId;
   final String? outbrainAndroidDataObInstallationKey;
   final String? outbrainIosDataObInstallationKey;
+  final bool darkMode;
 
   @override
   State<OutbrainAd> createState() => _OutbrainAdState();
@@ -35,6 +37,7 @@ class OutbrainAd extends StatefulWidget {
 
 class _OutbrainAdState extends State<OutbrainAd> {
   WebViewController? _controller;
+  bool darkMode = false;
 
   double webViewHeight = webViewInitialHeight;
   String? webviewUrl;
@@ -52,6 +55,9 @@ class _OutbrainAdState extends State<OutbrainAd> {
   }
 
   _buildWidgetURL() async {
+    setState(() {
+      darkMode = widget.darkMode;
+    });
     String? advertisingId;
     try {
       advertisingId = await AdvertisingId.id(true);
@@ -76,13 +82,22 @@ class _OutbrainAdState extends State<OutbrainAd> {
       }
     }
 
+    if (widget.darkMode) {
+      url += '&darkMode=true';
+    }
+
     if (advertisingId != null) {
       url += '&userId=$advertisingId';
     }
 
-    setState(() {
-      webviewUrl = url;
-    });
+    //Check if webview already loaded and dark mode changed then load new url
+    if (webviewUrl != null) {
+      _controller?.loadUrl(url);
+    } else {
+      setState(() {
+        webviewUrl = url;
+      });
+    }
   }
 
   @override
@@ -93,6 +108,9 @@ class _OutbrainAdState extends State<OutbrainAd> {
 
   @override
   Widget build(BuildContext context) {
+    if (widget.darkMode != darkMode) {
+      _buildWidgetURL();
+    }
     return webviewUrl == null
         ? Container()
         : SizedBox(
