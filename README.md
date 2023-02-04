@@ -31,5 +31,6 @@ import 'package:flutter_outbrain_ads/flutter_outbrain_ads.dart';
     outbrainAndroidWidgetId: 'DROP_ANDROID_WIDGET_ID_HERE',
     outbrainIosDataObInstallationKey: 'DROP_IOS_PARTNER_KEY_HERE',
     outbrainIosWidgetId: 'DROP_IOS_WIDGET_ID_HERE',
+    darkMode: true,
     )
 ```

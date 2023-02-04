@@ -54,6 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 outbrainAndroidWidgetId: 'AR_1',
                 outbrainIosDataObInstallationKey: 'DEMOP1MN24J3E1MGLQ92067LH',
                 outbrainIosWidgetId: 'AR_1',
+                darkMode: true,
               ),
             ),
           ],
