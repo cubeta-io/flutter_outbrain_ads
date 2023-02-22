@@ -52,7 +52,11 @@ class _OutbrainAdState extends State<OutbrainAd> {
       });
     }
     if (result['url'] != null) {
-      _launchUrl(Uri.parse(result['url']));
+      if (widget.onOrganicClick == null) {
+        _launchUrl(Uri.parse(result['url']));
+      } else {
+        widget.onOrganicClick!(result['url']);
+      }
     }
   }
 
@@ -138,11 +142,8 @@ class _OutbrainAdState extends State<OutbrainAd> {
                 if (nav.url.contains('https://widgets.outbrain.com')) {
                   return NavigationDecision.navigate;
                 }
-                if (widget.onOrganicClick == null) {
-                  _launchUrl(nav.url);
-                } else {
-                  widget.onOrganicClick!(nav.url);
-                }
+                _launchUrl(nav.url);
+
                 return NavigationDecision.prevent;
               },
             ),
