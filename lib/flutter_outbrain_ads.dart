@@ -22,6 +22,7 @@ class OutbrainAd extends StatefulWidget {
     this.outbrainAndroidDataObInstallationKey,
     this.outbrainIosDataObInstallationKey,
     this.darkMode = false,
+    this.onOrganicClick,
   }) : super(key: key);
 
   final String permalink;
@@ -30,6 +31,7 @@ class OutbrainAd extends StatefulWidget {
   final String? outbrainAndroidDataObInstallationKey;
   final String? outbrainIosDataObInstallationKey;
   final bool darkMode;
+  final Function? onOrganicClick;
 
   @override
   State<OutbrainAd> createState() => _OutbrainAdState();
@@ -136,7 +138,11 @@ class _OutbrainAdState extends State<OutbrainAd> {
                 if (nav.url.contains('https://widgets.outbrain.com')) {
                   return NavigationDecision.navigate;
                 }
-                _launchUrl(nav.url);
+                if (widget.onOrganicClick == null) {
+                  _launchUrl(nav.url);
+                } else {
+                  widget.onOrganicClick!();
+                }
                 return NavigationDecision.prevent;
               },
             ),
