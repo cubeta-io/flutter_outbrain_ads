@@ -31,7 +31,7 @@ class OutbrainAd extends StatefulWidget {
   final String? outbrainAndroidDataObInstallationKey;
   final String? outbrainIosDataObInstallationKey;
   final bool darkMode;
-  final Function? onOrganicClick;
+  final Function(String)? onOrganicClick;
 
   @override
   State<OutbrainAd> createState() => _OutbrainAdState();
@@ -141,7 +141,7 @@ class _OutbrainAdState extends State<OutbrainAd> {
                 if (widget.onOrganicClick == null) {
                   _launchUrl(nav.url);
                 } else {
-                  widget.onOrganicClick!();
+                  widget.onOrganicClick!(nav.url);
                 }
                 return NavigationDecision.prevent;
               },

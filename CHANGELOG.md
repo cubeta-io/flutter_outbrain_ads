@@ -1,3 +1,7 @@
+## 1.0.4
+
+- Add url for organic click callback
+
 ## 1.0.3
 
 - Add on organic click callback
