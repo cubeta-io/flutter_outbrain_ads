@@ -1,3 +1,7 @@
+## 1.0.3
+
+- Add on organic click callback
+
 ## 1.0.2
 
 - Fix issue in dark mode
