@@ -38,13 +38,13 @@ class OutbrainAd extends StatefulWidget {
 }
 
 class _OutbrainAdState extends State<OutbrainAd> {
-  WebViewController? _controller;
+  late WebViewController _controller;
   bool darkMode = false;
 
   double webViewHeight = webViewInitialHeight;
   String? webviewUrl;
 
-  _onWebViewMessage(JavascriptMessage event) {
+  _onWebViewMessage(event) {
     var result = jsonDecode(event.message);
     if (result['height'] != null) {
       setState(() {
@@ -98,11 +98,33 @@ class _OutbrainAdState extends State<OutbrainAd> {
 
     //Check if webview already loaded and dark mode changed then load new url
     if (webviewUrl != null) {
-      _controller?.loadUrl(url);
+      _controller.loadRequest(Uri.parse(url));
     } else {
-      setState(() {
-        webviewUrl = url;
-      });
+      _controller = WebViewController()
+        ..setJavaScriptMode(JavaScriptMode.unrestricted)
+        ..setBackgroundColor(Colors.transparent)
+        ..enableZoom(false)
+        ..addJavaScriptChannel("ReactNativeWebView",
+            onMessageReceived: _onWebViewMessage)
+        ..setNavigationDelegate(
+          NavigationDelegate(
+            onPageFinished: (val) {
+              _controller.runJavaScript(
+                  "var timesRun = 0;var interval = setInterval(function(){    timesRun += 1;    if(timesRun === 2){        clearInterval(interval);    }   let result = {} ;           let height = document.body.scrollHeight ;      result['height'] = height;          ReactNativeWebView.postMessage(JSON.stringify(result)) ;  }, 1000);");
+            },
+            onNavigationRequest: (NavigationRequest nav) {
+              if (nav.url.contains('https://widgets.outbrain.com')) {
+                return NavigationDecision.navigate;
+              }
+              _launchUrl(nav.url);
+
+              return NavigationDecision.prevent;
+            },
+          ),
+        )
+        ..loadRequest(Uri.parse(url));
+
+      webviewUrl = url;
     }
   }
 
@@ -121,31 +143,8 @@ class _OutbrainAdState extends State<OutbrainAd> {
         ? Container()
         : SizedBox(
             height: webViewHeight,
-            child: WebView(
-              initialUrl: webviewUrl,
-              initialMediaPlaybackPolicy: AutoMediaPlaybackPolicy.always_allow,
-              zoomEnabled: false,
-              javascriptMode: JavascriptMode.unrestricted,
-              backgroundColor: Colors.transparent,
-              javascriptChannels: {
-                JavascriptChannel(
-                  name: 'ReactNativeWebView',
-                  onMessageReceived: _onWebViewMessage,
-                )
-              },
-              onWebViewCreated: (controller) => _controller = controller,
-              onPageFinished: (url) {
-                _controller?.runJavascript(
-                    "var timesRun = 0;var interval = setInterval(function(){    timesRun += 1;    if(timesRun === 2){        clearInterval(interval);    }   let result = {} ;           let height = document.body.scrollHeight ;      result['height'] = height;          ReactNativeWebView.postMessage(JSON.stringify(result)) ;  }, 1000);");
-              },
-              navigationDelegate: (nav) {
-                if (nav.url.contains('https://widgets.outbrain.com')) {
-                  return NavigationDecision.navigate;
-                }
-                _launchUrl(nav.url);
-
-                return NavigationDecision.prevent;
-              },
+            child: WebViewWidget(
+              controller: _controller,
             ),
           );
   }

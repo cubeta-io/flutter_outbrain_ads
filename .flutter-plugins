@@ -1,12 +1,12 @@
 # This is a generated file; do not edit or check into version control.
-advertising_id=/Users/marcode/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/advertising_id-2.3.0/
-url_launcher=/Users/marcode/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher-6.1.7/
-url_launcher_android=/Users/marcode/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_android-6.0.22/
-url_launcher_ios=/Users/marcode/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_ios-6.0.17/
-url_launcher_linux=/Users/marcode/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_linux-3.0.1/
-url_launcher_macos=/Users/marcode/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_macos-3.0.1/
-url_launcher_web=/Users/marcode/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_web-2.0.13/
-url_launcher_windows=/Users/marcode/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_windows-3.0.1/
-webview_flutter=/Users/marcode/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/webview_flutter-2.8.0/
-webview_flutter_android=/Users/marcode/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/webview_flutter_android-2.10.4/
-webview_flutter_wkwebview=/Users/marcode/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/webview_flutter_wkwebview-2.9.5/
+advertising_id=/Users/marcode/.pub-cache/hosted/pub.dev/advertising_id-2.4.0/
+url_launcher=/Users/marcode/.pub-cache/hosted/pub.dev/url_launcher-6.1.10/
+url_launcher_android=/Users/marcode/.pub-cache/hosted/pub.dev/url_launcher_android-6.0.25/
+url_launcher_ios=/Users/marcode/.pub-cache/hosted/pub.dev/url_launcher_ios-6.1.2/
+url_launcher_linux=/Users/marcode/.pub-cache/hosted/pub.dev/url_launcher_linux-3.0.4/
+url_launcher_macos=/Users/marcode/.pub-cache/hosted/pub.dev/url_launcher_macos-3.0.4/
+url_launcher_web=/Users/marcode/.pub-cache/hosted/pub.dev/url_launcher_web-2.0.16/
+url_launcher_windows=/Users/marcode/.pub-cache/hosted/pub.dev/url_launcher_windows-3.0.5/
+webview_flutter=/Users/marcode/.pub-cache/hosted/pub.dev/webview_flutter-4.0.6/
+webview_flutter_android=/Users/marcode/.pub-cache/hosted/pub.dev/webview_flutter_android-3.4.2/
+webview_flutter_wkwebview=/Users/marcode/.pub-cache/hosted/pub.dev/webview_flutter_wkwebview-3.2.1/
