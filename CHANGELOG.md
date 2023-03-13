@@ -1,3 +1,7 @@
+## 1.0.6
+
+- Upgrade webview 4.0.5
+
 ## 1.0.5
 
 - Fix organic click callback
